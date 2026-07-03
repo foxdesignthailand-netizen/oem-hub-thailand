@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import type React from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OEM Hub Thailand | B2B Marketplace for Brand Builders",
+  title: "OEM Hub Thailand | B2B Quote-based Manufacturing Marketplace",
   description:
-    "ค้นหาโรงงาน OEM/ODM ซัพพลายเออร์ บรรจุภัณฑ์ งานพิมพ์ และบริการสร้างแบรนด์ พร้อมระบบ RFQ และดีลรูม"
+    "ค้นหา Supplier สร้าง RFQ เปรียบเทียบใบเสนอราคา เปิด Order และติดตามงานผลิตสำหรับธุรกิจแบรนด์ในประเทศไทย"
 };
 
 export default function RootLayout({

@@ -12,24 +12,23 @@ import {
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  ["หาโรงงาน", "/suppliers"],
-  ["บรรจุภัณฑ์", "/categories/packaging"],
-  ["งานพิมพ์", "/categories/printing"],
-  ["งานออกแบบ", "/categories/design"],
-  ["เอกสารสินค้า", "/categories/compliance"],
-  ["การตลาด", "/categories/marketing"],
-  ["วิธีใช้งาน", "/how-it-works"]
+  ["หน้าแรก", "/"],
+  ["ค้นหา Supplier", "/suppliers"],
+  ["หมวดหมู่สินค้า", "/categories"],
+  ["วิธีใช้งาน", "/how-it-works"],
+  ["ราคาแพ็กเกจ", "/pricing"],
+  ["ติดต่อเรา", "/contact"]
 ];
 
 export function Logo() {
   return (
     <Link className="flex items-center gap-3" href="/">
-      <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary-deep text-lg font-black text-white shadow-sm">
+      <span className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-primary to-primary-deep text-sm font-black text-white shadow-sm">
         OH
       </span>
       <span className="leading-tight">
-        <span className="block text-xl font-black tracking-tight">OEM Hub</span>
-        <span className="block text-xs font-bold uppercase tracking-[0.22em] text-primary-deep">
+        <span className="block text-xl font-black tracking-tight text-slate-950">OEM Hub</span>
+        <span className="block text-[11px] font-black uppercase tracking-[0.24em] text-primary-deep">
           Thailand
         </span>
       </span>
@@ -39,13 +38,13 @@ export function Logo() {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur">
-      <div className="container-page flex h-20 items-center gap-5">
+    <header className="sticky top-0 z-40 border-b border-emerald-100/80 bg-white/90 backdrop-blur-xl">
+      <div className="container-page flex h-[72px] items-center gap-5">
         <Logo />
-        <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-1 xl:flex">
           {navItems.map(([label, href]) => (
             <Link
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-gray-700 transition hover:bg-primary-light hover:text-primary-deep"
+              className="rounded-lg px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-primary-light hover:text-primary-deep"
               href={href}
               key={href}
             >
@@ -54,12 +53,12 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="ml-auto hidden items-center gap-2 lg:flex">
+          <Button href="/dashboard/supplier" variant="outline">
+            สำหรับ Supplier
+          </Button>
           <Button href="/dashboard/buyer" variant="ghost">
             <LogIn className="h-4 w-4" />
             เข้าสู่ระบบ
-          </Button>
-          <Button href="/dashboard/supplier" variant="outline">
-            สมัครเป็น Supplier
           </Button>
           <Button href="/rfq/new">
             <Send className="h-4 w-4" />

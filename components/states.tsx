@@ -1,3 +1,4 @@
+import type React from "react";
 import { AlertCircle, Inbox, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 

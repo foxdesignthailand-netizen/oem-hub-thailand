@@ -1,15 +1,28 @@
-import { Search, Send } from "lucide-react";
+import { Search, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input, Select } from "@/components/ui/input";
 
 export function SearchRfqBox() {
   return (
-    <Card className="p-5 sm:p-6">
-      <div className="grid gap-3 lg:grid-cols-[1.5fr_repeat(5,1fr)]">
+    <Card className="border-emerald-100 bg-white/95 p-4 shadow-soft sm:p-5">
+      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="flex items-center gap-2 text-sm font-black text-primary-deep">
+            <Sparkles className="h-4 w-4" />
+            เริ่มต้นจากโจทย์ของคุณ
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-950">
+            ขอใบเสนอราคา หรือค้นหา Supplier ที่เหมาะกับงานผลิต
+          </h2>
+        </div>
+        <span className="rounded-full bg-primary-light px-3 py-1 text-xs font-bold text-primary-deep">
+          ฟรี ไม่มีค่าใช้จ่ายสำหรับ Buyer
+        </span>
+      </div>
+      <div className="grid gap-3 lg:grid-cols-[1.7fr_repeat(3,0.9fr)_auto]">
         <Input
-          className="lg:col-span-2"
-          placeholder="คุณอยากผลิตอะไร? เช่น ครีม, อาหารเสริม, น้ำยา, ขวด, ฉลาก, กล่อง"
+          placeholder="บอกสิ่งที่ต้องการผลิต เช่น สกินแคร์ 1,000 ชิ้น พร้อมบรรจุภัณฑ์"
         />
         <Select defaultValue="">
           <option value="" disabled>
@@ -18,6 +31,7 @@ export function SearchRfqBox() {
           <option>โรงงาน OEM / ODM</option>
           <option>บรรจุภัณฑ์</option>
           <option>งานพิมพ์</option>
+          <option>เอกสาร อย. / GMP / ISO</option>
         </Select>
         <Select defaultValue="">
           <option value="" disabled>
@@ -29,29 +43,28 @@ export function SearchRfqBox() {
         </Select>
         <Select defaultValue="">
           <option value="" disabled>
-            จังหวัด
-          </option>
-          <option>กรุงเทพฯ</option>
-          <option>สมุทรปราการ</option>
-          <option>ชลบุรี</option>
-        </Select>
-        <Select defaultValue="">
-          <option value="" disabled>
             งบประมาณ
           </option>
           <option>ต่ำกว่า 50,000</option>
           <option>50,000-200,000</option>
           <option>มากกว่า 200,000</option>
         </Select>
-      </div>
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-end">
-        <Button href="/suppliers" variant="outline">
-          <Search className="h-4 w-4" />
-          ค้นหา Supplier
-        </Button>
-        <Button href="/rfq/new">
+        <Button href="/rfq/new" className="whitespace-nowrap">
           <Send className="h-4 w-4" />
-          สร้าง RFQ ให้หลายเจ้าเสนอราคา
+          เริ่ม RFQ
+        </Button>
+      </div>
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+          {["สกินแคร์", "อาหารเสริม", "ขวดและฝา", "สติ๊กเกอร์", "กล่องพิมพ์แบรนด์"].map((item) => (
+            <span className="rounded-full bg-slate-50 px-3 py-1 ring-1 ring-slate-200" key={item}>
+              {item}
+            </span>
+          ))}
+        </div>
+        <Button href="/suppliers" variant="ghost" className="justify-start sm:justify-center">
+          <Search className="h-4 w-4" />
+          ค้นหา Supplier ก่อน
         </Button>
       </div>
     </Card>

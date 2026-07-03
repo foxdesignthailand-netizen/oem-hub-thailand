@@ -2,17 +2,18 @@ import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "outline" | "ghost" | "soft" | "dark";
+type ButtonVariant = "primary" | "outline" | "ghost" | "soft" | "dark" | "white";
 type ButtonSize = "sm" | "md" | "lg" | "icon";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-primary-foreground shadow-sm hover:bg-primary-deep",
+    "bg-primary text-primary-foreground shadow-[0_10px_24px_rgba(16,185,129,0.26)] hover:bg-primary-deep hover:shadow-[0_12px_28px_rgba(4,120,87,0.28)]",
   outline:
-    "border border-primary/45 bg-white text-primary-deep hover:bg-primary-light",
-  ghost: "text-foreground hover:bg-muted",
+    "border border-primary/35 bg-white text-primary-deep hover:border-primary/60 hover:bg-primary-light",
+  ghost: "text-foreground hover:bg-emerald-50 hover:text-primary-deep",
   soft: "bg-primary-light text-primary-deep hover:bg-primary-soft",
-  dark: "bg-foreground text-white hover:bg-primary-deep"
+  dark: "bg-slate-950 text-white hover:bg-primary-deep",
+  white: "bg-white text-primary-deep shadow-sm hover:bg-primary-light"
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -39,7 +40,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classNames = cn(
-    "focus-ring inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50",
+    "focus-ring inline-flex items-center justify-center gap-2 rounded-lg font-bold transition-all disabled:pointer-events-none disabled:opacity-50",
     variants[variant],
     sizes[size],
     className
