@@ -4,6 +4,20 @@ OEM Hub Thailand is a Next.js B2B marketplace for Thai brand builders and indust
 
 The platform is not a simple supplier directory. Its core value is the transaction workflow inside the system: RFQ -> Quote -> Accepted Quote -> Order -> Direct Buyer Payment -> Supplier Order Activation Fee -> Work Timeline -> Completion -> Review.
 
+## Preview
+
+### Public Marketplace
+
+![OEM Hub Thailand marketplace preview](public/images/oem-hero-marketplace.png)
+
+### Supplier Discovery
+
+![OEM Hub Thailand supplier discovery preview](public/images/oem-hero-suppliers.png)
+
+### RFQ Flow
+
+![OEM Hub Thailand RFQ flow preview](public/images/oem-hero-rfq.png)
+
 ## Current Stack
 
 - Next.js App Router
