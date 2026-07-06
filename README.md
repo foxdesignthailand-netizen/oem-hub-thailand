@@ -74,6 +74,7 @@ Dashboards:
 - `/dashboard/buyer/rfq/[id]`
 - `/dashboard/supplier`
 - `/dashboard/supplier/rfqs`
+- `/dashboard/workflow`
 - `/admin`
 - `/admin/supabase-status`
 
@@ -84,6 +85,7 @@ Dashboards:
 - `components/ui/` - local primitive UI components
 - `lib/data.ts` - marketplace mock data
 - `lib/commerce.ts` - current commerce/payment/order domain model
+- `lib/workflow.ts` - end-to-end RFQ to Review workflow engine for MVP flow testing
 - `lib/supabase/` - Supabase client helpers and TypeScript foundation types
 - `supabase/migrations/` - SQL schema foundation for Supabase
 - `public/images/` - static assets
@@ -97,10 +99,28 @@ Setup steps:
 1. Create a Supabase project.
 2. Copy `.env.example` to `.env.local`.
 3. Fill `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-4. Run `supabase/migrations/20260706000000_phase_1_foundation.sql` in Supabase SQL Editor.
+4. Run both SQL files in `supabase/migrations/` in filename order.
 5. Open `/admin/supabase-status` to verify the connection.
+6. Open `/dashboard/workflow` to test RFQ -> Quote -> Order -> Payment -> Completed -> Review flow.
 
 Do not commit `.env.local` or any real secret keys.
+
+## Current MVP Workflow
+
+The app now includes a local workflow console for testing the core marketplace loop before full authentication and persistence are connected:
+
+- Buyer creates RFQ.
+- Supplier sends Quote.
+- Buyer accepts Quote and creates Order.
+- Buyer reports direct payment to Supplier.
+- Supplier confirms Buyer payment.
+- Supplier reports Order Activation Fee.
+- Admin verifies Platform Fee.
+- Supplier delivers work.
+- Buyer completes Order.
+- Buyer reviews Supplier only after `COMPLETED`.
+
+This console is at `/dashboard/workflow`. It uses browser storage for the demo state and is designed to match the Supabase workflow functions added in the Phase 2-6 migration.
 
 ## Important Context
 

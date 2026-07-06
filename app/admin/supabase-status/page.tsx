@@ -33,8 +33,7 @@ async function getSupabaseStatus() {
   const { data, error } = await supabase
     .from("system_settings")
     .select("key,value,description")
-    .eq("key", "phase_1_schema_version")
-    .maybeSingle();
+    .in("key", ["phase_1_schema_version", "phase_2_6_workflow_version"]);
 
   if (error) {
     return {
@@ -45,13 +44,21 @@ async function getSupabaseStatus() {
     };
   }
 
+  const settings = (data ?? []) as Array<{ key: string }>;
+  const markers = settings.map((item) => item.key);
+  const hasPhase1 = markers.includes("phase_1_schema_version");
+  const hasWorkflow = markers.includes("phase_2_6_workflow_version");
+
   return {
     config,
     canConnect: true,
-    schemaReady: Boolean(data),
-    message: data
-      ? "เชื่อมต่อ Supabase และพบ schema version แล้ว"
-      : "เชื่อมต่อ Supabase ได้ แต่ยังไม่พบ schema version ให้รัน migration ก่อน"
+    schemaReady: hasPhase1 && hasWorkflow,
+    message:
+      hasPhase1 && hasWorkflow
+        ? "เชื่อมต่อ Supabase และพบ schema + workflow version แล้ว"
+        : hasPhase1
+          ? "เชื่อมต่อ Supabase ได้และพบ Phase 1 แล้ว แต่ยังไม่พบ Phase 2-6 workflow migration"
+          : "เชื่อมต่อ Supabase ได้ แต่ยังไม่พบ schema version ให้รัน migration ก่อน"
   };
 }
 
@@ -132,8 +139,8 @@ export default async function SupabaseStatusPage() {
             <CardContent>
               <p className="text-sm leading-6 text-muted-foreground">
                 {status.schemaReady
-                  ? "ฐานข้อมูลมี marker ของ Phase 1 แล้ว พร้อมเริ่ม Phase 2 RFQ persistence"
-                  : "หลังสร้าง Supabase project ให้รัน migration ในโฟลเดอร์ supabase/migrations ก่อน"}
+                  ? "ฐานข้อมูลมี marker ของ Phase 1 และ Phase 2-6 แล้ว พร้อมต่อ API จริงเข้ากับหน้าจอ"
+                  : "หลังสร้าง Supabase project ให้รัน migration ในโฟลเดอร์ supabase/migrations ให้ครบทั้ง 2 ไฟล์ก่อน"}
               </p>
             </CardContent>
           </Card>

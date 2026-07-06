@@ -51,14 +51,18 @@ RFQ -> Quote -> Accept Quote -> Order -> Buyer pays Supplier directly -> Supplie
 
 - `lib/commerce.ts` - domain model ใหม่ของ payment/order/fee/reliability
 - `lib/data.ts` - marketplace mock data
+- `lib/workflow.ts` - local MVP workflow engine for RFQ -> Quote -> Order -> Payment -> Review
 - `lib/supabase/client.ts` - Supabase client and configuration status helper
 - `lib/supabase/types.ts` - Phase 1 Supabase TypeScript foundation types
 - `supabase/migrations/20260706000000_phase_1_foundation.sql` - Phase 1 database schema and RLS foundation
+- `supabase/migrations/20260706001000_phase_2_6_workflow_functions.sql` - Phase 2-6 workflow SQL functions
 - `components/commerce-widgets.tsx` - widgets สำหรับ order payment, activation fee, reliability score
+- `components/workflow-console.tsx` - interactive MVP workflow console
 - `app/dashboard/buyer/rfq/[id]/page.tsx` - Buyer RFQ/Order detail
 - `app/dashboard/supplier/page.tsx` - Supplier overview
 - `app/admin/page.tsx` - Admin overview
 - `app/admin/supabase-status/page.tsx` - Supabase connection smoke test
+- `app/dashboard/workflow/page.tsx` - RFQ to Review workflow demo
 
 ## Git Workflow
 

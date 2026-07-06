@@ -131,7 +131,22 @@ Phase 1 backend foundation has started. The app now has Supabase configuration, 
 
 The current UI still uses mock data. This is intentional so the public marketplace and dashboards remain usable while backend persistence is added gradually.
 
-Recommended next step: make `/rfq/new` save RFQ drafts and submitted RFQs to Supabase while preserving the current RFQ wizard UX.
+Recommended next step: connect the existing `/dashboard/workflow` local MVP flow to authenticated Supabase users and real database writes.
+
+## Phase 2-6 Progress
+
+The app now has a working local workflow console at `/dashboard/workflow` for the complete MVP loop:
+
+1. RFQ creation.
+2. Supplier Quote.
+3. Buyer accepts Quote and creates Order.
+4. Manual Buyer payment and Supplier confirmation.
+5. Supplier Order Activation Fee and Admin verification.
+6. Completed Order and Review.
+
+The Supabase migration `20260706001000_phase_2_6_workflow_functions.sql` adds matching SQL functions for a database-backed demo path.
+
+The workflow console currently stores demo state in browser storage so it remains testable before Supabase Auth is configured. Production persistence should replace this with authenticated server actions/RPC calls.
 
 ## What Phase 1 Should Not Do Yet
 

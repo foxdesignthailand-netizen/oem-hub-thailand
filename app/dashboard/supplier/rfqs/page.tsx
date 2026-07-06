@@ -11,7 +11,8 @@ const items = [
   { label: "Incoming RFQs", href: "/dashboard/supplier/rfqs", icon: "FileText" as const, active: true, badge: 8 },
   { label: "Quotes", href: "/dashboard/supplier", icon: "MessageCircle" as const },
   { label: "Orders", href: "/dashboard/supplier", icon: "ShoppingCart" as const },
-  { label: "Activation Fees", href: "/dashboard/supplier", icon: "CreditCard" as const }
+  { label: "Activation Fees", href: "/dashboard/supplier", icon: "CreditCard" as const },
+  { label: "Workflow Console", href: "/dashboard/workflow", icon: "PackageCheck" as const }
 ];
 
 const incoming = [

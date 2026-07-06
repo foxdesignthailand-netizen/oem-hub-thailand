@@ -34,6 +34,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input, Select, Textarea } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { createInitialWorkflowState, createRfq, workflowStorageKey, type WorkflowState } from "@/lib/workflow";
 
 const steps = [
   { title: "เลือกประเภทสินค้า", icon: Package },
@@ -92,6 +93,28 @@ export function RFQWizard() {
 
   const goNext = () => setStep((current) => Math.min(steps.length - 1, current + 1));
   const goBack = () => setStep((current) => Math.max(0, current - 1));
+  const submitRfq = () => {
+    if (typeof window === "undefined") return;
+
+    let currentState: WorkflowState;
+    const raw = window.localStorage.getItem(workflowStorageKey);
+
+    try {
+      currentState = raw ? (JSON.parse(raw) as WorkflowState) : createInitialWorkflowState();
+    } catch {
+      currentState = createInitialWorkflowState();
+    }
+
+    const nextState = createRfq(currentState, {
+      title: `${example} สำหรับแบรนด์ใหม่ พร้อมรายละเอียดการผลิต`,
+      category: selectedCategory?.title ?? "OEM / ODM",
+      quantity: 3000,
+      budget: 150000
+    });
+
+    window.localStorage.setItem(workflowStorageKey, JSON.stringify(nextState));
+    window.location.href = "/dashboard/workflow";
+  };
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
@@ -377,7 +400,7 @@ export function RFQWizard() {
           <div className="flex flex-col items-stretch gap-2 sm:items-end">
             <Button
               className="min-w-[190px]"
-              onClick={step === steps.length - 1 ? undefined : goNext}
+              onClick={step === steps.length - 1 ? submitRfq : goNext}
               size="lg"
             >
               {step === steps.length - 1 ? (

@@ -20,7 +20,8 @@ const items = [
   { label: "Orders", href: "/dashboard/buyer", icon: "ShoppingCart" as const },
   { label: "Messages", href: "/dashboard/buyer", icon: "MessageCircle" as const },
   { label: "Payments", href: "/dashboard/buyer", icon: "CreditCard" as const },
-  { label: "Reviews", href: "/dashboard/buyer", icon: "Star" as const }
+  { label: "Reviews", href: "/dashboard/buyer", icon: "Star" as const },
+  { label: "Workflow Console", href: "/dashboard/workflow", icon: "PackageCheck" as const }
 ];
 
 export default function RFQDetailPage({ params }: { params: { id: string } }) {

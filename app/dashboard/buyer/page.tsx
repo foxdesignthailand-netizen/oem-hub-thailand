@@ -16,7 +16,8 @@ const buyerItems = [
   { label: "Orders", href: "/dashboard/buyer", icon: "ShoppingCart" as const },
   { label: "Messages", href: "/dashboard/buyer", icon: "MessageCircle" as const, badge: 2 },
   { label: "Payments", href: "/dashboard/buyer", icon: "CreditCard" as const },
-  { label: "Reviews", href: "/dashboard/buyer", icon: "Star" as const }
+  { label: "Reviews", href: "/dashboard/buyer", icon: "Star" as const },
+  { label: "Workflow Console", href: "/dashboard/workflow", icon: "PackageCheck" as const }
 ];
 
 export default function BuyerDashboardPage() {
@@ -29,7 +30,10 @@ export default function BuyerDashboardPage() {
             Buyer ใช้งานฟรีใน MVP และชำระค่าดีลให้ Supplier โดยตรงตามเงื่อนไขใน Quote
           </p>
         </div>
-        <Button href="/rfq/new">สร้าง RFQ ใหม่</Button>
+        <div className="flex flex-wrap gap-3">
+          <Button href="/rfq/new">สร้าง RFQ ใหม่</Button>
+          <Button href="/dashboard/workflow" variant="outline">ทดสอบ Workflow</Button>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -95,6 +99,7 @@ export default function BuyerDashboardPage() {
           <div className="mt-4 grid gap-3">
             {[
               ["สร้าง RFQ ใหม่", "/rfq/new"],
+              ["ทดสอบ Workflow เต็มระบบ", "/dashboard/workflow"],
               ["ค้นหา Supplier", "/suppliers"],
               ["เปรียบเทียบใบเสนอราคา", "/dashboard/buyer/rfq/RFQ-2024-00089"],
               ["แจ้งหลักฐานชำระเงิน", "/dashboard/buyer/rfq/RFQ-2024-00089"]
