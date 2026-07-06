@@ -51,10 +51,14 @@ RFQ -> Quote -> Accept Quote -> Order -> Buyer pays Supplier directly -> Supplie
 
 - `lib/commerce.ts` - domain model ใหม่ของ payment/order/fee/reliability
 - `lib/data.ts` - marketplace mock data
+- `lib/supabase/client.ts` - Supabase client and configuration status helper
+- `lib/supabase/types.ts` - Phase 1 Supabase TypeScript foundation types
+- `supabase/migrations/20260706000000_phase_1_foundation.sql` - Phase 1 database schema and RLS foundation
 - `components/commerce-widgets.tsx` - widgets สำหรับ order payment, activation fee, reliability score
 - `app/dashboard/buyer/rfq/[id]/page.tsx` - Buyer RFQ/Order detail
 - `app/dashboard/supplier/page.tsx` - Supplier overview
 - `app/admin/page.tsx` - Admin overview
+- `app/admin/supabase-status/page.tsx` - Supabase connection smoke test
 
 ## Git Workflow
 

@@ -24,6 +24,7 @@ The platform is not a simple supplier directory. Its core value is the transacti
 - TypeScript
 - Tailwind CSS
 - shadcn-style local UI components
+- Supabase foundation for Phase 1 backend
 - Mock/seed data for the first implementation phase
 
 ## Run Locally
@@ -74,6 +75,7 @@ Dashboards:
 - `/dashboard/supplier`
 - `/dashboard/supplier/rfqs`
 - `/admin`
+- `/admin/supabase-status`
 
 ## Project Structure
 
@@ -82,7 +84,23 @@ Dashboards:
 - `components/ui/` - local primitive UI components
 - `lib/data.ts` - marketplace mock data
 - `lib/commerce.ts` - current commerce/payment/order domain model
+- `lib/supabase/` - Supabase client helpers and TypeScript foundation types
+- `supabase/migrations/` - SQL schema foundation for Supabase
 - `public/images/` - static assets
+
+## Supabase Phase 1
+
+Phase 1 has started with Supabase as the backend provider.
+
+Setup steps:
+
+1. Create a Supabase project.
+2. Copy `.env.example` to `.env.local`.
+3. Fill `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+4. Run `supabase/migrations/20260706000000_phase_1_foundation.sql` in Supabase SQL Editor.
+5. Open `/admin/supabase-status` to verify the connection.
+
+Do not commit `.env.local` or any real secret keys.
 
 ## Important Context
 

@@ -115,15 +115,23 @@ Initial permission rules:
 
 ## Phase 1 Deliverables
 
-1. Choose and confirm backend provider.
-2. Add `.env.example` with required environment variables.
-3. Add database schema or migration files.
-4. Add auth helper and role helper.
-5. Add typed domain models aligned with database tables.
-6. Add storage bucket plan or migration notes.
-7. Add audit log helper.
-8. Add a small connection smoke test page or script.
-9. Keep current public UI functional.
+1. Choose and confirm backend provider. `Done: Supabase`
+2. Add `.env.example` with required environment variables. `Done`
+3. Add database schema or migration files. `Done: supabase/migrations/20260706000000_phase_1_foundation.sql`
+4. Add auth helper and role helper. `Started: Supabase client helper and SQL role functions`
+5. Add typed domain models aligned with database tables. `Started: lib/supabase/types.ts`
+6. Add storage bucket plan or migration notes. `Done: migration creates starter buckets`
+7. Add audit log helper. `Data-ready: audit_logs table exists, app helper pending`
+8. Add a small connection smoke test page or script. `Done: /admin/supabase-status`
+9. Keep current public UI functional. `Required for verification`
+
+## Current Phase 1 Status
+
+Phase 1 backend foundation has started. The app now has Supabase configuration, schema, storage bucket setup, role/status foundations, and a safe status page.
+
+The current UI still uses mock data. This is intentional so the public marketplace and dashboards remain usable while backend persistence is added gradually.
+
+Recommended next step: make `/rfq/new` save RFQ drafts and submitted RFQs to Supabase while preserving the current RFQ wizard UX.
 
 ## What Phase 1 Should Not Do Yet
 
@@ -151,4 +159,3 @@ Phase 1 is complete when:
 ## Next Phase
 
 Phase 2 should focus on making `/rfq/new` save real RFQ data into the database while preserving the current user-friendly RFQ wizard.
-
