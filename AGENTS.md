@@ -9,7 +9,9 @@
 1. `README.md`
 2. `PROJECT_BRIEF.md`
 3. `BUSINESS_RULES.md`
-4. `AGENTS.md`
+4. `FEATURE_GOVERNANCE.md`
+5. `PHASE_1_PLAN.md`
+6. `AGENTS.md`
 
 ถ้ามี requirement ใหม่จากผู้ใช้ที่ขัดกับไฟล์เหล่านี้ ให้ยึด requirement ล่าสุดของผู้ใช้ก่อน แล้วอัปเดตเอกสารที่เกี่ยวข้องด้วยเมื่อเหมาะสม
 
@@ -71,4 +73,4 @@ git push
 
 ถ้าเปิดโปรเจกต์นี้ใน Codex user ใหม่ ให้เริ่มด้วยคำสั่ง/ข้อความ:
 
-อ่าน `README.md`, `PROJECT_BRIEF.md`, `BUSINESS_RULES.md`, และ `AGENTS.md` ก่อน จากนั้นตรวจโครงสร้าง `app/`, `components/`, `lib/` แล้วค่อยทำงานต่อจากสถานะปัจจุบัน
+อ่าน `README.md`, `PROJECT_BRIEF.md`, `BUSINESS_RULES.md`, `FEATURE_GOVERNANCE.md`, `PHASE_1_PLAN.md` และ `AGENTS.md` ก่อน จากนั้นตรวจโครงสร้าง `app/`, `components/`, `lib/` แล้วค่อยทำงานต่อจากสถานะปัจจุบัน

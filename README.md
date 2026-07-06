@@ -90,6 +90,8 @@ Before making product or code decisions, read:
 
 - `PROJECT_BRIEF.md`
 - `BUSINESS_RULES.md`
+- `FEATURE_GOVERNANCE.md`
+- `PHASE_1_PLAN.md`
 - `AGENTS.md`
 
 These files describe the business model, workflow, user roles, payment rules, and AI-agent working rules for this project.
