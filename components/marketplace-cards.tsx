@@ -36,7 +36,7 @@ const iconMap = {
 };
 
 const categoryImageMap: Record<string, string> = {
-  "oem-odm": "/images/oem-hero-suppliers.png",
+  "oem-odm": "/images/category-supplement.png",
   packaging: "/images/category-packaging.png",
   labels: "/images/category-labels.png",
   printing: "/images/category-printing.png",

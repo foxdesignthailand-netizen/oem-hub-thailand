@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { StatCard } from "@/components/business-widgets";
 import {
@@ -30,7 +31,33 @@ export default function SupplierDashboardPage() {
 
   return (
     <DashboardShell items={supplierItems} role="Supplier">
-      <div className="mb-6">
+      <div className="mb-6 grid gap-5 overflow-hidden rounded-[28px] border border-emerald-100 bg-white shadow-card lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="flex flex-col justify-center p-6 sm:p-8">
+          <Badge className="mb-4 w-fit">Supplier Workspace</Badge>
+          <h1 className="text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+            รับ RFQ, ส่งใบเสนอราคา และติดตาม Order ได้ชัดเจน
+          </h1>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            Supplier ใช้หน้านี้จัดการคำขอใหม่ ใบเสนอราคา คำสั่งผลิต และสถานะงาน โดยยังคงกติกา Order Activation Fee สำหรับฝั่ง Supplier เท่านั้น
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button href="/dashboard/supplier/rfqs">ดู RFQ ใหม่</Button>
+            <Button href="/dashboard/workflow" variant="outline">ทดสอบ Workflow</Button>
+          </div>
+        </div>
+        <div className="relative min-h-[260px] bg-emerald-50 lg:min-h-[360px]">
+          <Image
+            alt="Supplier dashboard illustration showing RFQs, quotations, purchase orders and work status"
+            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="(min-width: 1024px) 54vw, 100vw"
+            src="/images/supplier-dashboard-hero.png"
+          />
+        </div>
+      </div>
+
+      <div className="hidden">
         <h1 className="text-3xl font-black">ยินดีต้อนรับกลับมา, ณัฐวุฒิ</h1>
         <p className="mt-1 text-muted-foreground">
           รับเงินค่าดีลจาก Buyer โดยตรง แล้วชำระ Order Activation Fee เพื่อเริ่ม Order ผ่านระบบ

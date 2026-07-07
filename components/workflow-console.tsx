@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import {
   Banknote,
   CheckCircle2,
@@ -66,6 +67,29 @@ const phaseCards = [
     label: "Complete & Review",
     text: "Supplier ส่งงาน Buyer ตรวจรับ แล้วรีวิวได้",
     icon: Star
+  }
+];
+
+const guideVisuals = [
+  {
+    title: "เปรียบเทียบใบเสนอราคา",
+    text: "Buyer เห็นราคา MOQ lead time และคะแนนรีวิว เพื่อเลือก Supplier ที่เหมาะกับดีล",
+    image: "/images/quote-comparison-illustration.png"
+  },
+  {
+    title: "ชำระเงินแบบ Manual Verification",
+    text: "Buyer จ่าย Supplier โดยตรง ส่วน Supplier ชำระ Order Activation Fee เพื่อเปิดงานในระบบ",
+    image: "/images/payment-verification-illustration.png"
+  },
+  {
+    title: "ติดตามสถานะการผลิต",
+    text: "หลัง Admin ตรวจสอบแล้ว Order เดินต่อเป็น IN_PROGRESS และติดตามงานได้เป็นขั้นตอน",
+    image: "/images/order-timeline-illustration.png"
+  },
+  {
+    title: "จบงานแล้วรีวิวได้",
+    text: "Review เกิดจาก Completed Order เท่านั้น เพื่อให้คะแนนและความน่าเชื่อถือมาจากดีลจริง",
+    image: "/images/review-completed-illustration.png"
   }
 ];
 
@@ -205,6 +229,26 @@ export function WorkflowConsole() {
             <Badge className="mt-4">{phase.title}</Badge>
             <h2 className="mt-3 font-black text-slate-950">{phase.label}</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{phase.text}</p>
+          </Card>
+        ))}
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-4">
+        {guideVisuals.map((item) => (
+          <Card className="overflow-hidden" key={item.title}>
+            <div className="relative h-44 bg-emerald-50">
+              <Image
+                alt={`${item.title} illustration`}
+                className="h-full w-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                src={item.image}
+              />
+            </div>
+            <div className="p-5">
+              <h2 className="text-lg font-black text-slate-950">{item.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+            </div>
           </Card>
         ))}
       </div>

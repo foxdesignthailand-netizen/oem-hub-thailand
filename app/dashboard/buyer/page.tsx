@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { MessageThread, StatCard } from "@/components/business-widgets";
 import { OrderStatusRail, commerceDemo } from "@/components/commerce-widgets";
@@ -23,7 +24,33 @@ const buyerItems = [
 export default function BuyerDashboardPage() {
   return (
     <DashboardShell items={buyerItems} role="Buyer">
-      <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+      <div className="mb-6 grid gap-5 overflow-hidden rounded-[28px] border border-emerald-100 bg-white shadow-card lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="flex flex-col justify-center p-6 sm:p-8">
+          <Badge className="mb-4 w-fit">Buyer Workspace</Badge>
+          <h1 className="text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+            จัดการ RFQ, เปรียบเทียบราคา และติดตามงานผลิตในที่เดียว
+          </h1>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            หน้านี้คือศูนย์รวมงานของ Buyer ตั้งแต่ส่งคำขอราคา รับใบเสนอราคา เปิด Order ไปจนถึงตรวจรับและรีวิวหลังจบงาน
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button href="/rfq/new">สร้าง RFQ ใหม่</Button>
+            <Button href="/dashboard/workflow" variant="outline">ทดสอบ Workflow</Button>
+          </div>
+        </div>
+        <div className="relative min-h-[260px] bg-emerald-50 lg:min-h-[360px]">
+          <Image
+            alt="Buyer dashboard illustration showing RFQs, quote comparison and order tracking"
+            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="(min-width: 1024px) 54vw, 100vw"
+            src="/images/buyer-dashboard-hero.png"
+          />
+        </div>
+      </div>
+
+      <div className="hidden">
         <div>
           <h1 className="text-3xl font-black">ยินดีต้อนรับกลับ, คุณรุ่งโรจน์</h1>
           <p className="mt-1 text-muted-foreground">

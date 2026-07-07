@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { WorkflowConsole } from "@/components/workflow-console";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const items = [
   { label: "Buyer Dashboard", href: "/dashboard/buyer", icon: "Home" as const },
@@ -13,7 +15,33 @@ const items = [
 export default function WorkflowConsolePage() {
   return (
     <DashboardShell items={items} role="MVP Workflow">
-      <div className="mb-6">
+      <div className="mb-6 grid gap-5 overflow-hidden rounded-[28px] border border-emerald-100 bg-white shadow-card lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="flex flex-col justify-center p-6 sm:p-8">
+          <Badge className="mb-4 w-fit">Phase 2-6 MVP Workflow</Badge>
+          <h1 className="text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+            ทดสอบเส้นทาง RFQ → Quote → Order → Payment → Review
+          </h1>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            หน้านี้ช่วยจำลอง flow สำคัญของ marketplace ตั้งแต่ Buyer สร้าง RFQ จนจบงานและรีวิว โดยยังเป็น demo state สำหรับเตรียมต่อ Supabase จริง
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button href="/rfq/new">สร้าง RFQ</Button>
+            <Button href="/admin/supabase-status" variant="outline">เช็ค Supabase</Button>
+          </div>
+        </div>
+        <div className="relative min-h-[280px] bg-emerald-50 lg:min-h-[380px]">
+          <Image
+            alt="OEM Hub Thailand workflow illustration from RFQ to quotation, order, payment, production and review"
+            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            src="/images/workflow-console-hero.png"
+          />
+        </div>
+      </div>
+
+      <div className="hidden">
         <Badge className="mb-3">Phase 2-6 MVP</Badge>
         <h1 className="text-3xl font-black text-slate-950">RFQ to Order Workflow Console</h1>
         <p className="mt-2 max-w-3xl leading-7 text-muted-foreground">

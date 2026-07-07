@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { AdminDataTable, StatCard } from "@/components/business-widgets";
 import { MarketplaceRuleSummary, PlatformFeeQueueTable } from "@/components/commerce-widgets";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   marketplaceOrders,
@@ -37,7 +39,33 @@ export default function AdminDashboardPage() {
 
   return (
     <DashboardShell items={adminItems} role="Admin">
-      <div className="mb-6">
+      <div className="mb-6 grid gap-5 overflow-hidden rounded-[28px] border border-emerald-100 bg-white shadow-card lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="flex flex-col justify-center p-6 sm:p-8">
+          <Badge className="mb-4 w-fit">Platform Admin</Badge>
+          <h1 className="text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+            ศูนย์ควบคุมแพลตฟอร์มสำหรับตรวจสอบดีลและความน่าเชื่อถือ
+          </h1>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            Admin ใช้ตรวจสอบ Supplier, Order Activation Fee, Dispute, Review และสถานะสำคัญของระบบ โดย Buyer จะไม่เห็นข้อมูลค่าธรรมเนียมภายใน
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button href="/admin/supabase-status">เช็ค Supabase</Button>
+            <Button href="/dashboard/workflow" variant="outline">ดู Workflow Console</Button>
+          </div>
+        </div>
+        <div className="relative min-h-[260px] bg-emerald-50 lg:min-h-[360px]">
+          <Image
+            alt="Admin dashboard illustration showing supplier approval, payment verification, fee settings and dispute controls"
+            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            src="/images/admin-dashboard-hero.png"
+          />
+        </div>
+      </div>
+
+      <div className="hidden">
         <h1 className="text-3xl font-black">Admin Dashboard</h1>
         <p className="mt-1 text-muted-foreground">
           MVP นี้ Platform ไม่ถือเงินค่าผลิต ดูแลเฉพาะ Order Activation Fee, verification, score และ workflow
