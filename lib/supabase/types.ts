@@ -175,7 +175,44 @@ export type Database = {
       };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      oem_create_demo_rfq: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      oem_send_demo_quote: {
+        Args: { p_rfq_no?: string };
+        Returns: Json;
+      };
+      oem_accept_demo_quote: {
+        Args: { p_quote_no?: string };
+        Returns: Json;
+      };
+      oem_report_demo_buyer_payment: {
+        Args: { p_order_no?: string };
+        Returns: Json;
+      };
+      oem_confirm_demo_buyer_payment: {
+        Args: { p_order_no?: string };
+        Returns: Json;
+      };
+      oem_report_demo_platform_fee: {
+        Args: { p_order_no?: string };
+        Returns: Json;
+      };
+      oem_verify_demo_platform_fee: {
+        Args: { p_order_no?: string };
+        Returns: Json;
+      };
+      oem_complete_demo_order: {
+        Args: { p_order_no?: string };
+        Returns: Json;
+      };
+      oem_create_demo_review: {
+        Args: { p_order_no?: string };
+        Returns: Json;
+      };
+    };
     Enums: {
       user_role: UserRole;
       lifecycle_status: LifecycleStatus;

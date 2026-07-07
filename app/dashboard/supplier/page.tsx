@@ -16,13 +16,16 @@ import { formatBaht } from "@/lib/utils";
 
 const supplierItems = [
   { label: "Overview", href: "/dashboard/supplier", icon: "Home" as const, active: true },
-  { label: "Company Profile", href: "/suppliers/greenway-industry", icon: "Building2" as const },
+  { label: "Company Profile", href: "/dashboard/supplier/profile", icon: "Building2" as const },
   { label: "Verification", href: "/dashboard/supplier", icon: "ShieldCheck" as const },
   { label: "Listings", href: "/services/custom-printed-box", icon: "Box" as const },
   { label: "Incoming RFQs", href: "/dashboard/supplier/rfqs", icon: "FileText" as const, badge: 8 },
   { label: "Quotes", href: "/dashboard/supplier", icon: "MessageCircle" as const },
   { label: "Orders", href: "/dashboard/supplier", icon: "ShoppingCart" as const },
   { label: "Activation Fees", href: "/dashboard/supplier", icon: "CreditCard" as const },
+  { label: "Deal Room", href: "/dashboard/deal-room", icon: "ShoppingCart" as const },
+  { label: "File Center", href: "/dashboard/files", icon: "Database" as const },
+  { label: "MVP Control", href: "/dashboard/mvp", icon: "PackageCheck" as const },
   { label: "Workflow Console", href: "/dashboard/workflow", icon: "PackageCheck" as const }
 ];
 

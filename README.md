@@ -58,6 +58,7 @@ npm run typecheck
 Public marketplace:
 
 - `/`
+- `/auth`
 - `/categories`
 - `/categories/[slug]`
 - `/suppliers`
@@ -73,9 +74,14 @@ Dashboards:
 - `/dashboard/buyer`
 - `/dashboard/buyer/rfq/[id]`
 - `/dashboard/supplier`
+- `/dashboard/supplier/profile`
 - `/dashboard/supplier/rfqs`
+- `/dashboard/mvp`
+- `/dashboard/deal-room`
+- `/dashboard/files`
 - `/dashboard/workflow`
 - `/admin`
+- `/admin/operations`
 - `/admin/supabase-status`
 
 ## Project Structure
@@ -121,6 +127,23 @@ The app now includes a local workflow console for testing the core marketplace l
 - Buyer reviews Supplier only after `COMPLETED`.
 
 This console is at `/dashboard/workflow`. It uses browser storage for the demo state and is designed to match the Supabase workflow functions added in the Phase 2-6 migration.
+
+## MVP Control Center
+
+The app also includes `/dashboard/mvp`, a single control center that maps the first 10 product systems:
+
+1. Authentication and role switching
+2. RFQ creation
+3. Supplier quote submission
+4. Quote acceptance and order creation
+5. Manual payment verification
+6. Deal room and order timeline
+7. Completed-order-only review
+8. Admin operations
+9. Supplier self-service
+10. File upload and storage buckets
+
+It combines browser-storage workflow testing with Supabase RPC smoke actions for the Phase 2-6 SQL functions. Use `/dashboard/deal-room`, `/dashboard/files`, `/dashboard/supplier/profile`, and `/admin/operations` to inspect focused slices of the same MVP foundation.
 
 ## Important Context
 

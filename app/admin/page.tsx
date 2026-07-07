@@ -23,6 +23,8 @@ const adminItems = [
   { label: "Orders", href: "/admin", icon: "ShoppingCart" as const },
   { label: "Activation Fees", href: "/admin", icon: "CreditCard" as const },
   { label: "ข้อพิพาท", href: "/admin", icon: "Bell" as const, badge: 12 },
+  { label: "Operations", href: "/admin/operations", icon: "ShieldCheck" as const },
+  { label: "MVP Control", href: "/dashboard/mvp", icon: "PackageCheck" as const },
   { label: "Workflow Console", href: "/dashboard/workflow", icon: "PackageCheck" as const },
   { label: "Supabase", href: "/admin/supabase-status", icon: "Database" as const },
   { label: "ระบบและตั้งค่า", href: "/admin", icon: "Settings" as const }

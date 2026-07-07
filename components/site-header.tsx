@@ -56,7 +56,7 @@ export function SiteHeader() {
           <Button href="/dashboard/supplier" variant="outline">
             สำหรับ Supplier
           </Button>
-          <Button href="/dashboard/buyer" variant="ghost">
+          <Button href="/auth" variant="ghost">
             <LogIn className="h-4 w-4" />
             เข้าสู่ระบบ
           </Button>
