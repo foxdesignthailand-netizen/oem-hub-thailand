@@ -129,9 +129,11 @@ Initial permission rules:
 
 Phase 1 backend foundation has started. The app now has Supabase configuration, schema, storage bucket setup, role/status foundations, and a safe status page.
 
-The current UI still uses mock data. This is intentional so the public marketplace and dashboards remain usable while backend persistence is added gradually.
+The public marketplace UI still uses mock data. This is intentional so public pages remain fast and stable while backend persistence is added gradually.
 
-Recommended next step: connect the existing `/dashboard/workflow` local MVP flow to authenticated Supabase users and real database writes.
+The first database-backed MVP operations layer now exists in `/dashboard/mvp`. It can create RFQs, Quotes, Orders, payment records, platform fee records, completed Orders, Reviews, Supplier profile data, and file metadata through Supabase RPC functions.
+
+Recommended next step: replace the remaining browser-storage-only demo slices with authenticated Supabase writes and role-aware reads.
 
 ## Phase 2-6 Progress
 
@@ -144,9 +146,9 @@ The app now has a working local workflow console at `/dashboard/workflow` for th
 5. Supplier Order Activation Fee and Admin verification.
 6. Completed Order and Review.
 
-The Supabase migration `20260706001000_phase_2_6_workflow_functions.sql` adds matching SQL functions for a database-backed demo path.
+The Supabase migrations `20260706001000_phase_2_6_workflow_functions.sql` and `20260710000000_mvp_operational_rpc.sql` add matching SQL functions and an operational MVP RPC path.
 
-The workflow console currently stores demo state in browser storage so it remains testable before Supabase Auth is configured. Production persistence should replace this with authenticated server actions/RPC calls.
+The workflow console currently stores demo state in browser storage so it remains testable before Supabase Auth is fully enforced. `/dashboard/mvp` now exercises the real Supabase path, and production persistence should continue moving toward authenticated server actions/RPC calls with stricter RLS.
 
 ## What Phase 1 Should Not Do Yet
 

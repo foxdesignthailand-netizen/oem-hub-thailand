@@ -212,6 +212,135 @@ export type Database = {
         Args: { p_order_no?: string };
         Returns: Json;
       };
+      oem_mvp_upsert_user: {
+        Args: {
+          p_email: string;
+          p_role?: UserRole;
+          p_display_name?: string | null;
+          p_company_name?: string | null;
+          p_phone?: string | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_upsert_supplier_company: {
+        Args: {
+          p_actor_email: string;
+          p_company_name: string;
+          p_province?: string | null;
+          p_description?: string | null;
+          p_logo_url?: string | null;
+          p_cover_image_url?: string | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_create_rfq: {
+        Args: {
+          p_actor_email: string;
+          p_title: string;
+          p_category_slug?: string;
+          p_category_name?: string;
+          p_product_name?: string;
+          p_quantity?: number;
+          p_budget?: number;
+          p_description?: string | null;
+          p_contact_name?: string | null;
+          p_contact_email?: string | null;
+          p_contact_phone?: string | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_send_quote: {
+        Args: {
+          p_actor_email: string;
+          p_rfq_no: string;
+          p_supplier_name?: string;
+          p_total_amount?: number;
+          p_moq?: number;
+          p_lead_time_days?: number;
+          p_note?: string | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_accept_quote: {
+        Args: {
+          p_actor_email: string;
+          p_quote_no: string;
+        };
+        Returns: Json;
+      };
+      oem_mvp_report_buyer_payment: {
+        Args: {
+          p_actor_email: string;
+          p_order_no: string;
+          p_amount?: number | null;
+          p_proof_file_path?: string | null;
+          p_note?: string | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_confirm_buyer_payment: {
+        Args: {
+          p_actor_email: string;
+          p_order_no: string;
+        };
+        Returns: Json;
+      };
+      oem_mvp_report_platform_fee: {
+        Args: {
+          p_actor_email: string;
+          p_order_no: string;
+          p_proof_file_path?: string | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_verify_platform_fee: {
+        Args: {
+          p_actor_email: string;
+          p_order_no: string;
+        };
+        Returns: Json;
+      };
+      oem_mvp_mark_ready_for_review: {
+        Args: {
+          p_actor_email: string;
+          p_order_no: string;
+          p_note?: string | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_complete_order: {
+        Args: {
+          p_actor_email: string;
+          p_order_no: string;
+        };
+        Returns: Json;
+      };
+      oem_mvp_create_review: {
+        Args: {
+          p_actor_email: string;
+          p_order_no: string;
+          p_rating?: number;
+          p_comment?: string;
+        };
+        Returns: Json;
+      };
+      oem_mvp_register_file: {
+        Args: {
+          p_actor_email: string;
+          p_owner_type: string;
+          p_owner_no: string;
+          p_bucket: string;
+          p_file_name: string;
+          p_file_path: string;
+          p_file_type?: string | null;
+          p_file_size?: number | null;
+        };
+        Returns: Json;
+      };
+      oem_mvp_get_snapshot: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
     };
     Enums: {
       user_role: UserRole;

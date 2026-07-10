@@ -105,9 +105,10 @@ Setup steps:
 1. Create a Supabase project.
 2. Copy `.env.example` to `.env.local`.
 3. Fill `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-4. Run both SQL files in `supabase/migrations/` in filename order.
+4. Run all SQL files in `supabase/migrations/` in filename order.
 5. Open `/admin/supabase-status` to verify the connection.
-6. Open `/dashboard/workflow` to test RFQ -> Quote -> Order -> Payment -> Completed -> Review flow.
+6. Open `/dashboard/mvp` to test real Supabase MVP actions.
+7. Open `/dashboard/workflow` to test the browser-storage fallback flow.
 
 Do not commit `.env.local` or any real secret keys.
 
@@ -144,6 +145,23 @@ The app also includes `/dashboard/mvp`, a single control center that maps the fi
 10. File upload and storage buckets
 
 It combines browser-storage workflow testing with Supabase RPC smoke actions for the Phase 2-6 SQL functions. Use `/dashboard/deal-room`, `/dashboard/files`, `/dashboard/supplier/profile`, and `/admin/operations` to inspect focused slices of the same MVP foundation.
+
+## Supabase MVP Operations
+
+The migration `supabase/migrations/20260710000000_mvp_operational_rpc.sql` adds an operational RPC layer for the first real database-backed MVP flow:
+
+- register or update demo users by role
+- create RFQ records from `/rfq/new` and `/dashboard/mvp`
+- let Supplier create Quote records
+- let Buyer accept Quote and create Order records
+- record manual Buyer-to-Supplier payment status
+- record and verify Supplier Order Activation Fee
+- move Orders through ready-for-review and completed states
+- create Review records only after an Order is `COMPLETED`
+- register file metadata for RFQ, Quote, Order, Supplier, and Admin files
+- inspect a compact MVP snapshot from `/dashboard/mvp`
+
+This is still an MVP operations layer, not a full production admin system. It is designed so the RFQ -> Quote -> Order loop can start using Supabase while the public marketplace UI remains stable.
 
 ## Important Context
 

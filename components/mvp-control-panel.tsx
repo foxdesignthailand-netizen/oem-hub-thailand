@@ -47,6 +47,7 @@ import { formatBaht } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { SupabaseMvpConsole } from "@/components/supabase-mvp-console";
 
 type MvpMode = "full" | "auth" | "deal" | "files" | "supplier" | "admin";
 type RpcName =
@@ -293,6 +294,8 @@ export function MvpControlPanel({ mode = "full" }: { mode?: MvpMode }) {
           );
         })}
       </section>
+
+      <SupabaseMvpConsole />
 
       {(mode === "full" || mode === "auth") && (
         <Card>

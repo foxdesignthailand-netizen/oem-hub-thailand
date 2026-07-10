@@ -35,6 +35,7 @@ import { Card } from "@/components/ui/card";
 import { Input, Select, Textarea } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { createInitialWorkflowState, createRfq, workflowStorageKey, type WorkflowState } from "@/lib/workflow";
+import { mvpCreateRfq } from "@/lib/supabase/mvp-actions";
 
 const steps = [
   { title: "เลือกประเภทสินค้า", icon: Package },
@@ -88,13 +89,17 @@ export function RFQWizard() {
   const [step, setStep] = useState(0);
   const [category, setCategory] = useState(categories[0].slug);
   const [example, setExample] = useState(productExamples[0].label);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const progress = useMemo(() => ((step + 1) / steps.length) * 100, [step]);
   const selectedCategory = categories.find((item) => item.slug === category);
 
   const goNext = () => setStep((current) => Math.min(steps.length - 1, current + 1));
   const goBack = () => setStep((current) => Math.max(0, current - 1));
-  const submitRfq = () => {
+  const submitRfq = async () => {
     if (typeof window === "undefined") return;
+    setIsSubmitting(true);
+    setSubmitMessage("กำลังส่ง RFQ...");
 
     let currentState: WorkflowState;
     const raw = window.localStorage.getItem(workflowStorageKey);
@@ -113,7 +118,28 @@ export function RFQWizard() {
     });
 
     window.localStorage.setItem(workflowStorageKey, JSON.stringify(nextState));
-    window.location.href = "/dashboard/workflow";
+
+    const supabaseResult = await mvpCreateRfq({
+      title: `${example} สำหรับแบรนด์ใหม่ พร้อมรายละเอียดการผลิต`,
+      categorySlug: selectedCategory?.slug ?? category,
+      categoryName: selectedCategory?.title ?? "OEM / ODM",
+      productName: example,
+      quantity: 3000,
+      budget: 150000,
+      description:
+        "RFQ created from friendly RFQ Wizard. Buyer wants suppliers to estimate OEM production, packaging, MOQ, lead time, and standards.",
+      contactName: "Buyer Demo",
+      contactEmail: "buyer-demo@oemhub.local",
+      contactPhone: "080-000-0000"
+    });
+
+    setSubmitMessage(
+      supabaseResult.ok
+        ? "ส่ง RFQ เข้า Supabase และ local demo แล้ว"
+        : `บันทึก local demo แล้ว แต่ Supabase ยังไม่พร้อม: ${supabaseResult.message}`
+    );
+    setIsSubmitting(false);
+    window.location.href = supabaseResult.ok ? "/dashboard/mvp" : "/dashboard/workflow";
   };
 
   return (
@@ -400,6 +426,7 @@ export function RFQWizard() {
           <div className="flex flex-col items-stretch gap-2 sm:items-end">
             <Button
               className="min-w-[190px]"
+              disabled={isSubmitting}
               onClick={step === steps.length - 1 ? submitRfq : goNext}
               size="lg"
             >
@@ -415,6 +442,9 @@ export function RFQWizard() {
                 </>
               )}
             </Button>
+            {submitMessage ? (
+              <p className="text-xs font-bold text-primary-deep">{submitMessage}</p>
+            ) : null}
             <p className="text-xs text-muted-foreground">
               ข้อมูลของคุณปลอดภัย และจะใช้เพื่อจับคู่ Supplier ที่เหมาะสม
             </p>

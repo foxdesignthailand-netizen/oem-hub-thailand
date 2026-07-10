@@ -10,6 +10,7 @@ This folder contains the Phase 1 Supabase foundation.
 - Storage buckets for public assets, supplier media, RFQ files, quote files, order files, and admin files.
 - A schema marker used by `/admin/supabase-status`.
 - Phase 2-6 workflow functions for demo RFQ, Quote, Order, manual payment, fee verification, completion, and review.
+- MVP operational RPC functions used by `/dashboard/mvp` and `/rfq/new`.
 
 ## Local Setup
 
@@ -26,9 +27,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 5. Run migrations in filename order:
    - `supabase/migrations/20260706000000_phase_1_foundation.sql`
    - `supabase/migrations/20260706001000_phase_2_6_workflow_functions.sql`
+   - `supabase/migrations/20260710000000_mvp_operational_rpc.sql`
 6. Start the app with `npm run dev`.
 7. Open `/admin/supabase-status`.
-8. Open `/dashboard/workflow`.
+8. Open `/dashboard/mvp`.
 
 ## Demo SQL Flow
 
@@ -45,6 +47,23 @@ select public.oem_verify_demo_platform_fee();
 select public.oem_complete_demo_order();
 select public.oem_create_demo_review();
 ```
+
+## MVP Operations Flow
+
+After running all migrations, `/dashboard/mvp` can call the operational RPC functions from the app UI:
+
+1. Register or update demo role users.
+2. Create RFQ.
+3. Send Supplier Quote.
+4. Accept Quote and create Order.
+5. Report Buyer payment to Supplier.
+6. Confirm Supplier received Buyer payment.
+7. Report Supplier Order Activation Fee.
+8. Verify the fee as Admin.
+9. Mark work ready for review.
+10. Complete Order and create Review.
+
+The RFQ wizard at `/rfq/new` also tries to create a Supabase RFQ and falls back to the local workflow demo when Supabase is not ready.
 
 ## Important Rules
 
